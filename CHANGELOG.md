@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## 1.2.1
+* @akashic/akashic-engine: 1.14.0
+* @akashic/akashic-pdi: 1.15.0
+* @akashic/game-driver: 0.16.0
+* @akashic/pdi-browser: 0.15.0
+(このリポジトリの利用側の事情のため、 v1.2.0 と同一の内容でpublishしなおしています)
+
 ## 1.2.0
 * @akashic/pdi-browser を dependencies に移動
 
