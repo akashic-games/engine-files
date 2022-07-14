@@ -1,6 +1,6 @@
 {
   "name": "@akashic/engine-files",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "description": "A library that manages versions of libraries related to Akashic Engine",
   "main": "index.js",
   "scripts": {
@@ -33,14 +33,14 @@
     "@akashic/amflow-util": "1.1.0",
     "@akashic/game-configuration": "1.4.0",
     "@akashic/game-driver": "2.7.1",
-    "@akashic/pdi-browser": "2.2.1",
-    "@akashic/pdi-common-impl": "0.2.0",
-    "@akashic/pdi-types": "1.3.0",
+    "@akashic/pdi-browser": "2.2.2",
+    "@akashic/pdi-common-impl": "0.2.1",
+    "@akashic/pdi-types": "1.3.1",
     "@akashic/playlog": "3.1.0",
-    "@akashic/trigger": "1.0.0"
+    "@akashic/trigger": "1.0.1"
   },
   "devDependencies": {
-    "@akashic/headless-akashic": "^3.0.0",
+    "@akashic/headless-akashic": "^3.0.1",
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
