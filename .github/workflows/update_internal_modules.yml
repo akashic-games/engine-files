@@ -41,23 +41,8 @@ on:
         required: true
         type: boolean
         default: true
-      playlog:
-        description: '@akashic/playlog'
-        required: true
-        type: boolean
-        default: true
-      amflow:
-        description: '@akashic/amflow'
-        required: true
-        type: boolean
-        default: true
-      trigger:
-        description: '@akashic/trigger'
-        required: true
-        type: boolean
-        default: true
-      amflow_util:
-        description: '@akashic/amflow-util'
+      indirect_deps:
+        description: '@akashic/playlog, amflow, trigger, amflow-util'
         required: true
         type: boolean
         default: true
@@ -96,18 +81,13 @@ jobs:
       - name: Update pdi-types
         if: ${{ github.event.inputs.pdi_types == 'true' }}
         run: npx -y npm-check-updates -f "@akashic/pdi-types" -u
-      - name: Update playlog
-        if: ${{ github.event.inputs.playlog == 'true' }}
-        run: npx -y npm-check-updates -f "@akashic/playlog" -u
-      - name: Update amflow
-        if: ${{ github.event.inputs.amflow == 'true' }}
-        run: npx -y npm-check-updates -f "@akashic/amflow" -u
-      - name: Update trigger
-        if: ${{ github.event.inputs.trigger == 'true' }}
-        run: npx -y npm-check-updates -f "@akashic/trigger" -u
-      - name: Update amflow-util
-        if: ${{ github.event.inputs.amflow_util == 'true' }}
-        run: npx -y npm-check-updates -f "@akashic/amflow-util" -u
+      - name: Update Indirect Deps
+        if: ${{ github.event.inputs.indirect_deps == 'true' }}
+        run: |
+          npx -y npm-check-updates -f "@akashic/playlog" -u
+          npx -y npm-check-updates -f "@akashic/amflow" -u
+          npx -y npm-check-updates -f "@akashic/trigger" -u
+          npx -y npm-check-updates -f "@akashic/amflow-util" -u
       - name: Update headless-akashic
         if: ${{ github.event.inputs.headless_akashic == 'true' }}
         run: npx -y npm-check-updates -f "@akashic/headless-akashic" -u
