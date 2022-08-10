@@ -6,6 +6,7 @@ on:
       - main
       - v1-main
       - v2-main
+      - 'feature/**'
 
 jobs:
   release:
