@@ -44,7 +44,7 @@
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
-    "@types/jest": "^27.5.1",
+    "@types/jest": "^29.0.0",
     "@types/pixelmatch": "^5.2.4",
     "@types/pngjs": "^6.0.1",
     "babelify": "^10.0.0",
