@@ -6,6 +6,7 @@ on:
       - main
       - v1-main
       - v2-main
+      - bump-v3.4.0-beta.0
 
 jobs:
   release:
