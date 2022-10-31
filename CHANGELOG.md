@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 3.4.0-beta.1
+* 内部モジュールの更新
+
 ## 3.4.0-beta.0
 * @akashic/akashic-engine: 3.7.0
 * @akashic/amflow: 3.1.0
