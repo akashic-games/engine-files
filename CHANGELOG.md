@@ -1,4 +1,4 @@
-#[ CHANGELOG
+# CHANGELOG
 
 ## 3.5.0
 
