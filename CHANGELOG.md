@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 3.5.1
+* Canvas 版の成果物の UMD のグローバル変数名がファイル名と異なっていた件を修正
+
 ## 3.5.0
 
 * @akashic/akashic-engine: 3.6.0
