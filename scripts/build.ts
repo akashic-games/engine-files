@@ -18,7 +18,7 @@ async function main() {
 
 	await exec(`npx -y browserify ./src/engineFiles.js -t [babelify] -s ${name} -o ./dist/raw/debug/full/${name}.js`, { cwd });
 	await exec(`npx -y uglifyjs ./dist/raw/debug/full/${name}.js --comments -o ./dist/raw/release/full/${name}.js`, { cwd });
-	await exec(`npx -y browserify ./src/engineFiles.canvas.js -t [babelify] -s ${name} -o ./dist/raw/debug/canvas/${name}_Canvas.js`, { cwd });
+	await exec(`npx -y browserify ./src/engineFiles.canvas.js -t [babelify] -s ${name}_Canvas -o ./dist/raw/debug/canvas/${name}_Canvas.js`, { cwd });
 	await exec(`npx -y uglifyjs ./dist/raw/debug/canvas/${name}_Canvas.js --comments -o ./dist/raw/release/canvas/${name}_Canvas.js`, { cwd });
 }
 
