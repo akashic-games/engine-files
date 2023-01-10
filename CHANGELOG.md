@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 2.2.2
+* Canvas 版の成果物の UMD のグローバル変数名がファイル名と異なっていた件を修正
+
 ## 2.2.1
 * @akashic/akashic-engine: 2.6.7
 * @akashic/akashic-pdi: 2.10.0
