@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 3.6.1
+* @akashic/akashic-engine: 3.9.2
+* @akashic/amflow: 3.1.0
+* @akashic/amflow-util: 1.2.0
+* @akashic/game-configuration: 1.8.0
+* @akashic/game-driver: 2.11.1
+* @akashic/pdi-browser: 2.4.1
+* @akashic/pdi-common-impl: 1.2.0
+* @akashic/pdi-types: 1.6.0
+* @akashic/playlog: 3.1.0
+* @akashic/trigger: 1.0.1
+* @akashic/headless-akashic: ^3.1.0
+
 ## 3.6.0
 * @akashic/akashic-engine: 3.9.1
 * @akashic/amflow: 3.1.0
