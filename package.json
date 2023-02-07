@@ -61,13 +61,10 @@
     "uglify-js": "^3.15.5"
   },
   "jest": {
-    "globals": {
-      "ts-jest": {
-        "tsconfig": "tsconfig.json"
-      }
-    },
     "transform": {
-      "^.+\\.ts$": "ts-jest"
+      "^.+\\.ts$": ["ts-jest", {
+        "tsconfig": "tsconfig.json"
+      }]
     },
     "testMatch": [
       "<rootDir>/tests/*.spec.ts"
