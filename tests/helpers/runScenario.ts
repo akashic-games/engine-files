@@ -9,7 +9,7 @@ export interface RunScenarioParameterObject {
 }
 
 export async function runScenario(params: RunScenarioParameterObject): Promise<void> {
-	// NOTE: headless-driver に process.env.ENGINE_FILES_V3 の値を適用するため動的に読み込む
+	// NOTE: headless-driver に process.env.ENGINE_FILES_V3_PATH の値を適用するため動的に読み込む
 	const { GameContext } = await import("@akashic/headless-akashic");
 
 	const contentPath = params.contentPath;
