@@ -1,6 +1,6 @@
 {
   "name": "@akashic/engine-files",
-  "version": "3.6.3",
+  "version": "3.6.4",
   "description": "A library that manages versions of libraries related to Akashic Engine",
   "main": "index.js",
   "scripts": {
@@ -33,14 +33,14 @@
     "@akashic/amflow-util": "1.2.0",
     "@akashic/game-configuration": "1.9.0",
     "@akashic/game-driver": "2.12.0",
-    "@akashic/pdi-browser": "2.4.1",
+    "@akashic/pdi-browser": "2.4.2",
     "@akashic/pdi-common-impl": "1.2.0",
-    "@akashic/pdi-types": "1.6.0",
+    "@akashic/pdi-types": "1.7.0",
     "@akashic/playlog": "3.1.0",
     "@akashic/trigger": "1.0.1"
   },
   "devDependencies": {
-    "@akashic/headless-akashic": "^3.1.0",
+    "@akashic/headless-akashic": "^4.0.0",
     "@babel/cli": "^7.17.10",
     "@babel/core": "^7.17.10",
     "@babel/preset-env": "^7.17.10",
@@ -62,9 +62,12 @@
   },
   "jest": {
     "transform": {
-      "^.+\\.ts$": ["ts-jest", {
-        "tsconfig": "tsconfig.json"
-      }]
+      "^.+\\.ts$": [
+        "ts-jest",
+        {
+          "tsconfig": "tsconfig.json"
+        }
+      ]
     },
     "testMatch": [
       "<rootDir>/tests/*.spec.ts"
