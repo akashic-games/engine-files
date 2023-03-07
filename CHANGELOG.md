@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Unreleased changes
+* devDependencies に canvas を追加
+
 ## 3.6.4
 * @akashic/akashic-engine: 3.10.0
 * @akashic/amflow: 3.1.0
