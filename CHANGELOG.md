@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Unreleased changes
+## 3.6.5
 * devDependencies に canvas を追加
 
 ## 3.6.4
