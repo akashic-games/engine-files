@@ -61,7 +61,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
           cache: npm
       - name: Update akashic-engine
         if: ${{ github.event.inputs.akashic_engine == 'true' }}
