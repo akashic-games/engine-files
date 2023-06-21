@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 2.2.3
+* @akashic/akashic-engine: 2.6.7
+* @akashic/akashic-pdi: 2.11.0
+* @akashic/game-driver: 1.11.0
+* @akashic/pdi-browser: 1.12.0
+
 ## 2.2.2
 * Canvas 版の成果物の UMD のグローバル変数名がファイル名と異なっていた件を修正
 
