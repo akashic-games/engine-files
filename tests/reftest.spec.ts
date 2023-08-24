@@ -36,32 +36,30 @@ const contentNames = fs
 	.readdirSync(fixturesPath)
 	.filter((filename) => fs.statSync(path.join(fixturesPath, filename)).isDirectory() && fs.existsSync(path.join(fixturesPath, filename, "game.json")));
 
-for (const contentName of contentNames) {
-	describe(`reftest - ${contentName}`, (): void => {
-		for (const engineFilesPath of engineFilesPaths) {
-			describe(engineFilesPath.subDirectory, () => {
-				beforeAll(() => {
-					process.env.ENGINE_FILES_V3_PATH = path.resolve(__dirname, "..", "dist", "raw", engineFilesPath.subDirectory, engineFilesPath.engineFilesName);
-				});
+describe.each(contentNames)(`reftest - %s`, (contentName) => {
+	describe.each(engineFilesPaths)("$subDirectory", (engineFilesPath) => {
+		beforeAll(() => {
+			process.env.ENGINE_FILES_V3_PATH = path.resolve(__dirname, "..", "dist", "raw", engineFilesPath.subDirectory, engineFilesPath.engineFilesName);
+		});
 
-				test("compares pixels", async () => {
-					const results = await runReftest({
-						outputDir: engineFilesPath.subDirectory,
-						contentPath: path.join(fixturesPath, contentName),
-						threshold: 0.1,
-						filenameTransformer: age => `age_${("0000" + age).slice(-4)}_seed_${seed}.png`
-					});
+		test("compares pixels", async () => {
+			expect(fs.existsSync(process.env.ENGINE_FILES_V3_PATH)).toBe(true);
 
-					for (const result of results) {
-						expect(result.missingPixels).toBe(0);
-					}
-				}, 60000);
-
-				afterAll(() => {
-					delete process.env.ENGINE_FILES_V3_PATH;
-					jest.resetModules();
-				});
+			const results = await runReftest({
+				outputDir: engineFilesPath.subDirectory,
+				contentPath: path.join(fixturesPath, contentName),
+				threshold: 0.1,
+				filenameTransformer: age => `age_${("0000" + age).slice(-4)}_seed_${seed}.png`
 			});
-		}
+
+			for (const result of results) {
+				expect(result.missingPixels).toBe(0);
+			}
+		}, 60000);
+
+		afterAll(() => {
+			delete process.env.ENGINE_FILES_V3_PATH;
+			jest.resetModules();
+		});
 	});
-}
+});
