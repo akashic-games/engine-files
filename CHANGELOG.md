@@ -1,8 +1,16 @@
 # CHANGELOG
 
-## 2.2.3
+## 2.4.0
 * @akashic/akashic-engine: 2.6.7
-* @akashic/akashic-pdi: 2.11.0
+* @akashic/akashic-pdi: 2.12.0
+* @akashic/amflow: ^3.3.0
+* @akashic/game-driver: 1.11.0
+* @akashic/pdi-browser: 1.12.0
+* @akashic/playlog: ^3.3.0
+
+## 2.3.0
+* @akashic/akashic-engine: 2.6.7
+* @akashic/akashic-pdi: ~2.11.0
 * @akashic/game-driver: 1.11.0
 * @akashic/pdi-browser: 1.12.0
 
