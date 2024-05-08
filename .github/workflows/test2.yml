@@ -18,9 +18,11 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
       - name: Set up Homebrew
+        if: runner.os == 'macOS'
         id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
-      - name: Install library
+      - name: brew install
+        if: runner.os == 'macOS'
         run: brew install pkg-config cairo pango libpng jpeg giflib librsvg
       - name: Use npm@8
         run: npm i -g npm@8 --registry=https://registry.npmjs.org
