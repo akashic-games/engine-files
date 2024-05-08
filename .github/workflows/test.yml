@@ -19,7 +19,6 @@ jobs:
           cache: npm
       - name: Set up Homebrew only for macOS
         if: runner.os == 'macOS'
-        id: set-up-homebrew
         uses: Homebrew/actions/setup-homebrew@master
       - name: brew install only for macOS
         if: runner.os == 'macOS'
