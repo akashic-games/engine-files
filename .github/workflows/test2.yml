@@ -25,7 +25,6 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           brew install pkg-config cairo pango libpng jpeg giflib librsvg
-          brew install python-setuptools
       - name: Use npm@8
         run: npm i -g npm@8 --registry=https://registry.npmjs.org
       - name: Run test
