@@ -19,8 +19,6 @@ jobs:
         with:
           node-version: '18'
           cache: npm
-      - name: Use npm@7
-        run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - name: Prepare
         run: |
           npm ci

@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [16.x, 18.x]
+        node: [18.x, 20.x]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -17,8 +17,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - name: Use npm@7
-        run: npm i -g npm@7 --registry=https://registry.npmjs.org
+      - name: Set up Homebrew only for macOS
+        if: runner.os == 'macOS'
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: brew install only for macOS
+        if: runner.os == 'macOS'
+        run: |
+          brew install pkg-config cairo pango libpng jpeg giflib librsvg
+          brew install python-setuptools
       - name: Run test
         run: |
           npm ci
