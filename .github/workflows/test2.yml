@@ -23,7 +23,9 @@ jobs:
         uses: Homebrew/actions/setup-homebrew@master
       - name: brew install
         if: runner.os == 'macOS'
-        run: brew install pkg-config cairo pango libpng jpeg giflib librsvg
+        run: |
+          brew install pkg-config cairo pango libpng jpeg giflib librsvg
+          xcode-select --install
       - name: Use npm@8
         run: npm i -g npm@8 --registry=https://registry.npmjs.org
       - name: Run test
