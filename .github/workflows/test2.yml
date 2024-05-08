@@ -1,0 +1,31 @@
+name: reftest222
+
+on: [push, pull_request]
+
+jobs:
+  reftest:
+    runs-on: ${{ matrix.os }}
+    name: Node ${{ matrix.node }} / ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+        node: [18.x]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+      - name: Set up Homebrew
+        id: set-up-homebrew
+        uses: Homebrew/actions/setup-homebrew@master
+      - name: Install library
+        run: brew install pkg-config cairo pango libpng jpeg giflib librsvg
+      - name: Use npm@8
+        run: npm i -g npm@8 --registry=https://registry.npmjs.org
+      - name: Run test
+        run: |
+          npm ci
+          npm run build
+          npm test
