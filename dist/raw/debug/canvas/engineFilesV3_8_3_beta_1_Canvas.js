@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.engineFilesV3_8_2_Canvas = factory());
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.engineFilesV3_8_3_beta_1_Canvas = factory());
 })(this, (function () { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -15412,7 +15412,7 @@
 	            var onPointerMove_1 = handlers.onPointerMove, onPointerUp_1 = handlers.onPointerUp, onPointerCancel_1 = handlers.onPointerCancel;
 	            window.removeEventListener("pointermove", onPointerMove_1, false);
 	            window.removeEventListener("pointerup", onPointerUp_1, false);
-				window.removeEventListener("pointercancel", onPointerCancel_1, false);
+			    window.removeEventListener("pointercancel", onPointerCancel_1, false);
 	            delete _this._eventHandlersMap[event.pointerId];
 	          }
 	        };

@@ -1,7 +1,7 @@
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
-	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.engineFilesV3_8_2 = factory());
+	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.engineFilesV3_8_3_beta_1 = factory());
 })(this, (function () { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -15397,11 +15397,6 @@
 	    function PointerEventHandler(inputView) {
 	      var _this = _super.call(this, inputView) || this;
 
-        //   _this.onPointerCancel = function (event) {
-        //     console.log("----- onPointerCancel");
-        //     _this.pointUp(event.pointerId, _this.getOffsetPositionFromInputView(event), _this.getPlatformButtonType(event, 0 /* PlatformButtonType.Primary */));
-        //   };
-
 	      _this.onPointerDown = function (e) {
             console.log("+++ onPointerDown");
 	        _this.pointDown(e.pointerId, _this.getOffsetPositionFromInputView(e), _this.getPlatformButtonType(e, 0 /* PlatformButtonType.Primary */));
@@ -15446,12 +15441,10 @@
 	    PointerEventHandler.prototype.start = function () {
 	      this.inputView.addEventListener("pointerdown", this.onPointerDown, false);
 	      this.inputView.addEventListener("contextmenu", InputEventHandler_1.preventEventDefault, false);
-        //   this.inputView.addEventListener("pointercancel", this.onPointerCancel, false);
 	    };
 	    PointerEventHandler.prototype.stop = function () {
 	      this.inputView.removeEventListener("pointerdown", this.onPointerDown, false);
 	      this.inputView.removeEventListener("contextmenu", InputEventHandler_1.preventEventDefault, false);
-        //   this.inputView.removeEventListener("pointercancel", this.onPointerCancel, false);
 	    };
 	    PointerEventHandler.prototype.getPlatformButtonType = function (e, defaultValue) {
 	      switch (e.button) {
