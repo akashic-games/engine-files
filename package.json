@@ -1,6 +1,6 @@
 {
   "name": "@akashic/engine-files",
-  "version": "3.9.0",
+  "version": "3.9.1",
   "description": "A library that manages versions of libraries related to Akashic Engine",
   "main": "index.js",
   "scripts": {
@@ -28,7 +28,7 @@
     "@akashic:registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
-    "@akashic/akashic-engine": "3.18.1",
+    "@akashic/akashic-engine": "3.18.2",
     "@akashic/amflow": "3.3.0",
     "@akashic/amflow-util": "1.4.0",
     "@akashic/game-configuration": "2.3.0",
