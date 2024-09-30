@@ -4,6 +4,7 @@
   "description": "A library that manages versions of libraries related to Akashic Engine",
   "main": "index.js",
   "scripts": {
+    "prepare": "npm run build",
     "build": "rollup -c",
     "update-changelog": "node scripts/updateChangelog.js",
     "update-expected": "ts-node scripts/updateExpected.ts",
