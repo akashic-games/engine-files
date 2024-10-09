@@ -49,7 +49,7 @@
     "@rollup/plugin-commonjs": "^28.0.0",
     "@rollup/plugin-node-resolve": "^15.2.0",
     "@rollup/plugin-terser": "^0.4.3",
-    "@rollup/plugin-typescript": "^11.1.2",
+    "@rollup/plugin-typescript": "^12.0.0",
     "@types/jest": "^29.0.0",
     "@types/pixelmatch": "^5.2.4",
     "@types/pngjs": "^6.0.1",
