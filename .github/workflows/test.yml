@@ -12,14 +12,14 @@ jobs:
         node: [18.x, 20.x]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
-      - uses: actions/setup-node@v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
       - name: Set up Homebrew only for macOS
         if: runner.os == 'macOS'
-        uses: Homebrew/actions/setup-homebrew@master
+        uses: Homebrew/actions/setup-homebrew@5f502512ff94c45bc4122c06677f64ff67d11691 # 2025/09/27時点のmasterブランチ
       - name: brew install only for macOS
         if: runner.os == 'macOS'
         run: |
@@ -31,7 +31,7 @@ jobs:
           npm test
       - name: Archive artifact
         if: ${{ always() }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: engine_files_reftest_result_${{ matrix.os }}_${{ matrix.node }}
           path: |
