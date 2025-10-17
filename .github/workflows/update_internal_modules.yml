@@ -52,14 +52,18 @@ on:
         type: boolean
         default: true
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update_internal_modules:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: '18'
           cache: npm
@@ -93,7 +97,9 @@ jobs:
         run: npx npm-check-updates -f "@akashic/headless-akashic" -u
       - name: Bump Version
         if: ${{ github.event.inputs.version != 'as-is' }}
-        run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
+        run: npm version ${GITHUB_EVENT_INPUTS_VERSION} --no-git-tag-version
+        env:
+          GITHUB_EVENT_INPUTS_VERSION: ${{ github.event.inputs.version }}
       - name: Check Diff
         run: |
           if [ $(git diff --name-only | wc -l) -eq "0" ]; then
@@ -125,9 +131,11 @@ jobs:
           git config user.name 'github-actions'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m "Update to ${{ steps.variables.outputs.next_version }}"
+          git commit -m "Update to ${STEPS_VARIABLES_OUTPUTS_NEXT_VERSION}"
+        env:
+          STEPS_VARIABLES_OUTPUTS_NEXT_VERSION: ${{ steps.variables.outputs.next_version }}
       - name: Create PullRequest
-        uses: peter-evans/create-pull-request@v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           branch-suffix: timestamp
           delete-branch: true
