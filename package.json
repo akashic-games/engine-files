@@ -81,5 +81,12 @@
       "<rootDir>/tests/*.spec.ts"
     ],
     "testTimeout": 10000
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "npm",
+      "version": ">=11.11.0",
+      "onFail": "error"
+    }
   }
 }
