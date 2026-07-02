@@ -1,0 +1,48 @@
+name: Publish and Release
+
+on:
+  push:
+    branches:
+      - main
+      - v1-main
+      - v2-main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    name: Publish and Release
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: npm
+      - name: Use npm@7
+        run: npm i -g npm@7 --registry=https://registry.npmjs.org
+      - name: Prepare
+        run: |
+          npm ci
+          npm run build
+          npm test
+      - name: Publish and Release
+        uses: akashic-games/action-release@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          npm_token: ${{ secrets.NPM_TOKEN }}
+      - name: Upload Artifacts
+        working-directory: dist
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version=$(cat ../package.json | jq -r .version)
+          if [ $(gh release view v${version} --json assets | jq ".assets | length") != "0" ]; then
+            exit 0
+          fi
+          basename=$(basename ./raw/debug/full/engineFilesV*.js .js)
+          cp ./raw/release/full/${basename}.js ./${basename}.js
+          cp ./raw/release/canvas/${basename}_Canvas.js ./${basename}_Canvas.js
+          cp ./raw/debug/full/${basename}.js ./${basename}.debug.js
+          cp ./raw/debug/canvas/${basename}_Canvas.js ./${basename}_Canvas.debug.js
+          gh release upload v${version} ${basename}.js ${basename}_Canvas.js ${basename}.debug.js ${basename}_Canvas.debug.js
