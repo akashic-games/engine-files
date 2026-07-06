@@ -32,16 +32,20 @@ on:
         type: boolean
         default: true
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   update_internal_modules:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
-          node-version: '16'
+          node-version: '24'
           cache: npm
       - name: Update akashic-engine
         if: ${{ github.event.inputs.akashic_engine == 'true' }}
@@ -57,7 +61,9 @@ jobs:
         run: npx -y npm-check-updates -f "@akashic/akashic-pdi" -t minor -u
       - name: Bump Version
         if: ${{ github.event.inputs.version != 'as-is' }}
-        run: npm version ${{ github.event.inputs.version }} --no-git-tag-version
+        run: npm version ${GITHUB_EVENT_INPUTS_VERSION} --no-git-tag-version
+        env:
+          GITHUB_EVENT_INPUTS_VERSION: ${{ github.event.inputs.version }}
       - name: Check Diff
         run: |
           if [ $(git diff --name-only | wc -l) -eq "0" ]; then
@@ -84,20 +90,22 @@ jobs:
         run: |
           NEXT_VERSION=$(cat package.json | jq -r .version)
           echo "::set-output name=next_version::${NEXT_VERSION}"
-      - name: Create commits
+      - name: Create Commit and Pull Request
         run: |
+          BRANCH_NAME="update-deps-$(date +%s)"
+          git checkout -b "${BRANCH_NAME}"
           git config user.name 'github-actions'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git add -A
-          git commit -m "Update to ${{ steps.variables.outputs.next_version }}"
-      - name: Create PullRequest
-        uses: peter-evans/create-pull-request@v4
-        with:
-          branch-suffix: timestamp
-          delete-branch: true
-          title: 'Update to ${{ steps.variables.outputs.next_version }}'
-          body: |
-            # このPullRequestが解決する内容
-            内部モジュールを更新します。
-          labels: |
-            dependencies
+          git commit -m "Update to ${STEPS_VARIABLES_OUTPUTS_NEXT_VERSION}"
+          git push origin "${BRANCH_NAME}"
+          gh pr create \
+            --title "Update to ${STEPS_VARIABLES_OUTPUTS_NEXT_VERSION}" \
+            --body "$(printf '# このPullRequestが解決する内容\n内部モジュールを更新します。')" \
+            --label "dependencies" \
+            --base "${CURRENT_BRANCH}" \
+            --head "${BRANCH_NAME}"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          STEPS_VARIABLES_OUTPUTS_NEXT_VERSION: ${{ steps.variables.outputs.next_version }}
+          CURRENT_BRANCH: ${{ github.ref_name }}
