@@ -22,11 +22,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - name: brew install only for macOS
-        if: runner.os == 'macOS'
-        run: |
-          brew install pkg-config cairo pango libpng jpeg giflib librsvg
-          brew install python-setuptools
       - name: Run test
         run: |
           npm ci
