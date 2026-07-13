@@ -2,6 +2,9 @@ name: reftest
 
 on: [push, pull_request]
 
+permissions:
+  contents: read
+
 jobs:
   reftest:
     runs-on: ${{ matrix.os }}
@@ -9,16 +12,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [14.x, 16.x]
+        node: [24.x]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.1.0
         with:
           node-version: ${{ matrix.node }}
           cache: npm
-      - name: Use npm@7
-        run: npm i -g npm@7 --registry=https://registry.npmjs.org
       - name: Run test
         run: |
           npm ci
@@ -26,7 +29,7 @@ jobs:
           npm test
       - name: Archive artifact
         if: ${{ always() }}
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: engine_files_reftest_result
           path: |
