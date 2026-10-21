@@ -82,6 +82,9 @@
     ],
     "testTimeout": 10000
   },
+  "allowScripts": {
+    "canvas@3.2.0": true
+  },
   "devEngines": {
     "packageManager": {
       "name": "npm",
