@@ -5,8 +5,15 @@
   ],
   "packageRules": [
     {
-      "packagePatterns": ["^@akashic/"],
+      "packagePatterns": [
+        "^@akashic/"
+      ],
       "enabled": false
     }
-  ]
+  ],
+  "vulnerabilityAlerts": {
+    "enabled": true,
+    "minimumReleaseAge": null,
+    "prPriority": 10
+  }
 }
